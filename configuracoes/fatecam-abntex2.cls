@@ -14,15 +14,15 @@
 
 
 % -----------------------------------------------------------------------------
-% Universidade Tecnológica Federal do Paraná - UTFPR
+% Faculdade de Tecnologia de Americana (FATEC-AM)
 %
-% Customização da classe abnTeX2 (http://www.abntex.net.br/) para as normas da UTFPR
+% Customização da classe abnTeX2 (http://www.abntex.net.br/) para as normas da FATEC-AM
 %
-% Projeto hospedado em: <link git>
+% Projeto hospedado em: https://github.com/kleberandrade/fatecam-abntex2
 %
-% Autores: Diego Marczal  <>
-% 	   Michael Vornes <https://github.com/mvornes>
-%
+% Autores: Kleber de Oliveira Andrade
+% Data: 19/09/2018
+% Versão: 1.0.0
 %------------------------------------------------------------------------------
 % Codificação: UTF-8
 % LaTeX:  abnTeX2          
@@ -50,9 +50,9 @@
 \RequirePackage{makeidx}                                % Produzir índice remissivo de palavras
 \RequirePackage{chngcntr}
 
-% -----------------------------------------------------------------------------
+% #########################################################
 % Configurações gerais
-% -----------------------------------------------------------------------------
+% #########################################################
 
 % Retira o espaço extra desnecessário nas frases
 \frenchspacing
@@ -81,9 +81,9 @@
 % Define a numeração das equações de forma sequencial
 \counterwithout{equation}{chapter}
 
-% -----------------------------------------------------------------------------
-% Comandos de dados
-% -----------------------------------------------------------------------------
+% #########################################################
+% Comandos básicos
+% #########################################################
 
 % Comandos de dados - Departamento
 \providecommand{\imprimirdepartamento}{}
@@ -139,9 +139,9 @@
 \providecommand{\imprimirlogoinstituicao}{}
 \newcommand{\logoinstituicao}[2]{\renewcommand{\imprimirlogoinstituicao}{\includegraphics[width={#1}\textwidth]{#2}}}
 
-% -----------------------------------------------------------------------------
-% Estilo de elementos
-% -----------------------------------------------------------------------------
+% #########################################################
+% Estilo de Elementos
+% #########################################################
 
 % Elementos pré-textuais
 \renewcommand{\pretextual}
@@ -170,9 +170,9 @@
     \phantompart
 }
 
-% -----------------------------------------------------------------------------
-% Objetos flutuantes
-% -----------------------------------------------------------------------------
+% #########################################################
+% Objetos Flutuantes
+% #########################################################
 
 % Comando que trata a fonte nos objetos flutuantes
 \renewcommand{\fonte}[1]
@@ -190,19 +190,19 @@
     \end{tabular}
 }
 
-% -----------------------------------------------------------------------------
-% Parágrafos
-% -----------------------------------------------------------------------------
+% #########################################################
+% Paragrafos
+% #########################################################
 
 % Tamanho da indentação do parágrafo
-\setlength{\parindent}{1.5cm}
+\setlength{\parindent}{1.25cm}
 
 % Espaçamento entre um parágrafo e outro
 \setlength{\parskip}{0.0cm}
 
-% -----------------------------------------------------------------------------
+% #########################################################
 % Fontes
-% -----------------------------------------------------------------------------
+% #########################################################
 
 % Redefinição de fontes
 \renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
@@ -223,9 +223,9 @@
 \renewcommand{\ABNTEXsubsubsubsectionfont}{\normalfont}
 \renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
 
-% -----------------------------------------------------------------------------
+% #########################################################
 % Sumário
-% -----------------------------------------------------------------------------
+% #########################################################
 
 % Travessão no sumário para apêndices e anexos
 \renewcommand{\cftchapteraftersnum}{\hfill\textendash\hfill}
@@ -233,9 +233,10 @@
 % Insere espaço entre os itens do sumário de diferentes capítulos
 \setlength{\cftbeforechapterskip}{1.0em \@plus\p@}
 
-% -----------------------------------------------------------------------------
+
+% #########################################################
 % Listas
-% -----------------------------------------------------------------------------
+% #########################################################
 
 % Define os títulos das listas
 \addto\captionsbrazil{%
@@ -263,27 +264,33 @@
 \renewcommand{\cftquadroname}{\quadroname\space}
 \renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
 
-% -----------------------------------------------------------------------------
+% #########################################################
 % Capa
-% -----------------------------------------------------------------------------
+% #########################################################
 \makeatletter
 \renewcommand{\imprimircapa}{
     \begin{capa}
         \begin{center}
-		\begin{SingleSpacing}
-            		\large\MakeUppercase{\imprimirinstituicao} \\
+        % Cabeçalho
+        \begin{figure}[!htpb]
+    		\centering
+    		\includegraphics[height=70px]{figuras/logo-instituicao.png} \\
+            \noindent\rule{14cm}{0.4pt}
+            		\textbf{\large\MakeUppercase{\imprimirinstituicao}} \\
 	    		\abntex@ifnotempty{\imprimirdepartamento}
             		{
-                		\MakeUppercase{\imprimirdepartamento} \\
+                		\textbf{\MakeUppercase{\imprimirdepartamento}} \\
             		}
-           		\large\MakeUppercase{\imprimirprograma} \\
-		\end{SingleSpacing}
+           	\textbf{\large{\imprimirprograma}} \\
+    	\end{figure}
+    	
+		
         \end{center}
-        \vspace{60pt}
+        \vspace*{60pt}
 	\begin{center}
-		\large\MakeUppercase{\imprimirautor}\\
+		\large{\imprimirautor}\\
 	\end{center}
-	\vspace{120pt}
+	\vspace*{120pt}
         \begin{center}
             \ABNTEXchapterfont\large\MakeUppercase{\imprimirtitulo}
             \abntex@ifnotempty{\imprimirsubtitulo}
@@ -291,35 +298,46 @@
                 {\ABNTEXchapterfont: }{\large{\imprimirsubtitulo}}
             }
         \end{center}
-	\vspace{120pt}
-	\begin{center}
-		\large\MakeUppercase{\imprimirprojeto}
-	\end{center}
-	\vfill
+
+	    \vfill
         \begin{center}
-		\begin{SingleSpacing}
-            		\large\MakeUppercase{\imprimirlocal}\\
-            		\large\MakeUppercase{\imprimirdata}
-		\end{SingleSpacing}
-    	\end{center}
-
+        \begin{SingleSpacing}
+            		\textbf{\large{\imprimirlocal}}\\
+            		\textbf{\large{\imprimirdata}}
+        \end{SingleSpacing}
+        \end{center}
     \end{capa}
-
 }
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Folha de rosto
-% -----------------------------------------------------------------------------
+% #########################################################
+% Folha de Rosto
+% #########################################################
 \makeatletter
 \renewcommand{\folhaderostocontent}
 {%
     \setcounter{page}{2}
+    
+    % Cabeçalho
+    \begin{figure}[!htpb]
+		\centering
+		\includegraphics[height=70px]{figuras/logo-instituicao.png} \\
+        \noindent\rule{14cm}{0.4pt}
+        		\textbf{\large\MakeUppercase{\imprimirinstituicao}} \\
+    		\abntex@ifnotempty{\imprimirdepartamento}
+        		{
+            		\textbf{\MakeUppercase{\imprimirdepartamento}} \\
+        		}
+       	\textbf{\large{\imprimirprograma}} \\
+	\end{figure}
+    
+    \vspace*{2cm}
+    
     \begin{center}
-        \large\MakeUppercase{\imprimirautor}\\
+        \large{\imprimirautor}\\
     \end{center}
 
-    \vspace*{96pt}
+    \vspace*{2cm}
 
     \begin{center}
         \ABNTEXchapterfont\large\MakeUppercase{\imprimirtitulo}
@@ -344,27 +362,26 @@
             {%
                 & \multicolumn{2}{p{.6\textwidth}}{\small\hyphenpenalty=10000{\imprimirlinhapesquisaRotulo\imprimirlinhapesquisa}} \\ & & \\
             }
-            \abntex@ifnotempty{\imprimirorientador}
-            {%
-                & \small\imprimirorientadorRotulo & \imprimirorientador \\
-                & & \small\imprimirinstOrientador \\ & & \\
-            }
-            \abntex@ifnotempty{\imprimircoorientador}
-            {%
-                & \small\imprimircoorientadorRotulo & \imprimircoorientador \\
-                & & \small\imprimirinstCoorientador
-            }
+            %\abntex@ifnotempty{\imprimirorientador}
+            %{%
+            %    & \small\imprimirorientadorRotulo & \imprimirorientador \\
+            %    & & \small\imprimirinstOrientador \\ & & \\
+            %}
+            %\abntex@ifnotempty{\imprimircoorientador}
+            %{%
+            %    & \small\imprimircoorientadorRotulo & \imprimircoorientador \\
+            %    & & \small\imprimirinstCoorientador
+            %}
         \end{tabular}
     }
 
-    \vspace*{\fill}
-
-    \begin{center}
-	\begin{SingleSpacing}
-            \large\MakeUppercase{\imprimirlocal}\\
-            \large\MakeUppercase{\imprimirdata}
-	\end{SingleSpacing}
-    \end{center}
+    \vfill
+        \begin{center}
+        \begin{SingleSpacing}
+            		\textbf{\large{\imprimirlocal}}\\
+            		\textbf{\large{\imprimirdata}}
+        \end{SingleSpacing}
+        \end{center}
 }
 \makeatother
 
@@ -407,6 +424,8 @@
             \end{SingleSpacing}
         \end{minipage}
     \end{flushright}
+    
+    \vspace*{4cm}
 }
 
 % -----------------------------------------------------------------------------
